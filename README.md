@@ -1,7 +1,9 @@
 YgnTraffic
 ==========
 
-YgnTraffic is an android app to Check and Report Yangon Traffic condition based on Ko [Ei Maung](https://github.com/eimg)'s [Cyntra](http://cyantra.co/) API.
+YgnTraffic is an android app to Check and Report Yangon Traffic condition based on Ko [Ei Maung](https://github.com/eimg)'s [Cyantra](http://cyantra.co/) API.
+
+API Postman link : https://www.getpostman.com/collections/cdc0306b478abb4ea377
 
 Contributing
 ------------
