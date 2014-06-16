@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="app_name">Ygn Traffic</string>
+  <string name="title_traffic">Traffic</string>
+  <string name="title_my_place">My Place</string>
+  <string name="action_settings">Settings</string>
+
+</resources>
