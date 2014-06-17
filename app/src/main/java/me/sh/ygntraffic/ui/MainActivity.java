@@ -116,16 +116,19 @@ public class MainActivity extends BaseActivity
     String date;
     String remark;
     String reportTime;
+    String status;
     name = placeArrayList.get(position).getName();
     flag = placeArrayList.get(position).getFlag();
     date = placeArrayList.get(position).getCreatedDate();
     remark = placeArrayList.get(position).getRemark();
     reportTime = placeArrayList.get(position).getReportedTime();
+    status = placeArrayList.get(position).getStatus();
     arguments.putString("name", name);
     arguments.putString("flag", flag);
     arguments.putString("date", date);
     arguments.putString("remark", remark);
     arguments.putString("reportTime", reportTime);
+    arguments.putString("status",status);
     intentToDetail.putExtras(arguments);
     startActivity(intentToDetail);
   }

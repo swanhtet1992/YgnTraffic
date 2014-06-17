@@ -15,7 +15,7 @@ public class DetailActivity extends ActionBarActivity {
   String flag = null;
   String date = null;
   String remark = null;
-  String recent = null;
+  String status = null;
   String reportTime = null;
 
   @InjectView(R.id.trafficName) TextView trafficName;
@@ -37,10 +37,27 @@ public class DetailActivity extends ActionBarActivity {
     date = bundleFromFragment.getString("date");
     reportTime = bundleFromFragment.getString("reportTime");
     remark = bundleFromFragment.getString("remark");
+    status = bundleFromFragment.getString("status");
     setContentView(R.layout.activity_detail);
     ButterKnife.inject(this);
+    if (status.equalsIgnoreCase("1")) {
+      trafficRemark.setText("Normal");
+      trafficRemark.setBackgroundColor(this.getResources().getColor(R.color.green));
+    } else if (status.equalsIgnoreCase("2")) {
+      trafficRemark.setText("Bad Traffic");
+      trafficRemark.setBackgroundColor(this.getResources().getColor(R.color.yellow));
+    } else if (status.equalsIgnoreCase("3")) {
+      trafficRemark.setText(remark);
+      if (remark.equalsIgnoreCase(null)) {
+        trafficRemark.setText("Worst Traffic");
+      }
+      trafficRemark.setBackgroundColor(this.getResources().getColor(R.color.red));
+    } else {
+      trafficRemark.setText("Unknown");
+      trafficRemark.setBackgroundColor(this.getResources().getColor(R.color.grey));
+    }
     trafficName.setText(name);
-    trafficRemark.setText(remark);
+
     trafficReportTime.setText(reportTime);
   }
 
