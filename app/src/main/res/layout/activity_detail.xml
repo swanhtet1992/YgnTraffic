@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e9e9e9"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -9,8 +10,10 @@
     tools:context="me.sh.ygntraffic.ui.DetailActivity">
   <RelativeLayout android:layout_width="match_parent"
       android:background="@color/white"
+      android:paddingBottom="10dp"
       android:layout_height="match_parent">
     <TextView
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:layout_marginBottom="10dp"
         android:id="@+id/trafficName"
         android:textSize="22sp"
@@ -18,6 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView android:layout_width="wrap_content"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:textSize="18sp"
         android:layout_below="@+id/trafficName"
         android:background="@color/red"
@@ -27,17 +31,20 @@
         android:layout_marginBottom="10dp"
         android:layout_height="wrap_content"/>
     <TextView
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:id="@+id/trafficReportTime"
         android:layout_below="@+id/trafficRemark"
         android:layout_width="match_parent"
         android:textColor="@color/text_color"
         android:layout_height="wrap_content"/>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
       <Button
           android:id="@+id/btnReport"
           android:textSize="16sp"
@@ -51,7 +58,6 @@
           android:layout_weight=".50"
           />
 
-
       <Button
           android:id="@+id/btnMyPlace"
           android:textColor="@color/white"
@@ -63,7 +69,6 @@
           android:textStyle="bold"
           android:gravity="center"
           android:layout_height="48dp"/>
-
 
     </LinearLayout>
   </RelativeLayout>
