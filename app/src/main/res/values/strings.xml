@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <string name="app_name">Ygn Traffic</string>
-  <string name="title_traffic">Traffic</string>
-  <string name="title_my_place">My Place</string>
-  <string name="action_settings">Settings</string>
+    <string name="app_name">Ygn Traffic</string>
+    <string name="title_traffic">Traffic</string>
+    <string name="title_my_place">My Place</string>
+    <string name="action_settings">Settings</string>
+    <string name="traffictitle">Enter Traffic</string>
+    <string name="trafficodition">Report</string>
+    <string name="flagtoremove">Flag To Remove</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="report">Report</string>
+    <string name="myplace">My Place</string>
 
 </resources>

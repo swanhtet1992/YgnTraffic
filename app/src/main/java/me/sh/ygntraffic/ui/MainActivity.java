@@ -1,5 +1,6 @@
 package me.sh.ygntraffic.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
@@ -7,17 +8,17 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import java.util.ArrayList;
 import me.sh.ygntraffic.R;
 import me.sh.ygntraffic.adapter.PagerAdapter;
 import me.sh.ygntraffic.base.BaseActivity;
 import me.sh.ygntraffic.fragment.TrafficFragment;
+import me.sh.ygntraffic.model.Place;
 
-
-public class MainActivity extends BaseActivity implements ActionBar.TabListener, TrafficFragment.OnPlaceClickListener {
+public class MainActivity extends BaseActivity
+    implements ActionBar.TabListener, TrafficFragment.OnPlaceClickListener {
 
   /**
    * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -32,8 +33,7 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener,
   /**
    * The {@link ViewPager} that will host the section contents.
    */
-  @InjectView(R.id.pager)
-  ViewPager mViewPager;
+  @InjectView(R.id.pager) ViewPager mViewPager;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +69,7 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener,
       // the TabListener interface, as the callback (listener) for when
       // this tab is selected.
       actionBar.addTab(
-          actionBar.newTab()
-              .setText(mSectionsPagerAdapter.getPageTitle(i))
-              .setTabListener(this)
-      );
+          actionBar.newTab().setText(mSectionsPagerAdapter.getPageTitle(i)).setTabListener(this));
     }
   }
 
@@ -111,7 +108,25 @@ public class MainActivity extends BaseActivity implements ActionBar.TabListener,
   }
 
   @Override
-  public void onPlaceClick(String id) {
-    Toast.makeText(this, "Click: " + id, Toast.LENGTH_SHORT).show();
+  public void onPlaceClick(ArrayList<Place> placeArrayList, int position) {
+    Bundle arguments = new Bundle();
+    Intent intentToDetail = new Intent(getApplicationContext(), DetailActivity.class);
+    String name;
+    String flag;
+    String date;
+    String remark;
+    String reportTime;
+    name = placeArrayList.get(position).getName();
+    flag = placeArrayList.get(position).getFlag();
+    date = placeArrayList.get(position).getCreatedDate();
+    remark = placeArrayList.get(position).getRemark();
+    reportTime = placeArrayList.get(position).getReportedTime();
+    arguments.putString("name", name);
+    arguments.putString("flag", flag);
+    arguments.putString("date", date);
+    arguments.putString("remark", remark);
+    arguments.putString("reportTime", reportTime);
+    intentToDetail.putExtras(arguments);
+    startActivity(intentToDetail);
   }
 }

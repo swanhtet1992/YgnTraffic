@@ -5,4 +5,5 @@
   <color name="red">#cf4c4d</color>
   <color name="yellow">#fed130</color>
   <color name="green">#99cc00</color>
+  <color name="text_color">#000000</color>
 </resources>

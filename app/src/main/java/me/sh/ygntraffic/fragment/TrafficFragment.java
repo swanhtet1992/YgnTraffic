@@ -12,7 +12,8 @@ import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -20,11 +21,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
-
 import java.util.ArrayList;
-
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 import me.sh.ygntraffic.R;
 import me.sh.ygntraffic.adapter.PlaceAdapter;
 import me.sh.ygntraffic.base.BaseFragment;
@@ -38,10 +35,8 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
   /**
    * The fragment's ListView/GridView.
    */
-  @InjectView(android.R.id.list)
-  AbsListView mListView;
-  @InjectView(R.id.progress_bar)
-  ProgressBar mProgressBar;
+  @InjectView(android.R.id.list) AbsListView mListView;
+  @InjectView(R.id.progress_bar) ProgressBar mProgressBar;
 
   /**
    * The Adapter which will be used to populate the ListView/GridView with
@@ -69,7 +64,7 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                           Bundle savedInstanceState) {
+      Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_place, container, false);
     ButterKnife.inject(this, view);
 
@@ -92,8 +87,8 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
     try {
       mListener = (OnPlaceClickListener) activity;
     } catch (ClassCastException e) {
-      throw new ClassCastException(activity.toString()
-          + " must implement OnFragmentInteractionListener");
+      throw new ClassCastException(
+          activity.toString() + " must implement OnFragmentInteractionListener");
     }
   }
 
@@ -124,7 +119,6 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
                 Place item = gson.fromJson(obj, Place.class);
                 mPlaces.add(item);
               }
-
               mAdapter = new PlaceAdapter(getActivity(), mPlaces);
               // Set the adapter
               ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
@@ -139,7 +133,7 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
     if (null != mListener) {
       // Notify the active callbacks interface (the activity, if the
       // fragment is attached to one) that an item has been selected.
-      mListener.onPlaceClick("Clicked: " + position);
+      mListener.onPlaceClick(mPlaces,position);
     }
   }
 
@@ -167,7 +161,6 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
    * >Communicating with Other Fragments</a> for more information.
    */
   public interface OnPlaceClickListener {
-    public void onPlaceClick(String id);
+    public void onPlaceClick(ArrayList<Place> placeArrayList, int position);
   }
-
 }
