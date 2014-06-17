@@ -18,18 +18,18 @@ public class DetailActivity extends ActionBarActivity {
   String recent = null;
   String reportTime = null;
 
-  @InjectView(R.id.trafficName)
-  TextView trafficName;
+  @InjectView(R.id.trafficName) TextView trafficName;
 
-  @InjectView(R.id.trafficRemark)
-  TextView trafficRemark;
+  @InjectView(R.id.trafficRemark) TextView trafficRemark;
 
-  @InjectView(R.id.trafficReportTime)
-  TextView trafficReportTime;
+  @InjectView(R.id.trafficReportTime) TextView trafficReportTime;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setHomeButtonEnabled(true);
 
     Bundle bundleFromFragment = getIntent().getExtras();
     name = bundleFromFragment.getString("name");
@@ -42,7 +42,6 @@ public class DetailActivity extends ActionBarActivity {
     trafficName.setText(name);
     trafficRemark.setText(remark);
     trafficReportTime.setText(reportTime);
-
   }
 
   @Override
@@ -60,6 +59,10 @@ public class DetailActivity extends ActionBarActivity {
     int id = item.getItemId();
     if (id == R.id.action_settings) {
       return true;
+    } else if (id == android.R.id.home) {
+      this.onBackPressed();
+      finish();
+      return false;
     }
     return super.onOptionsItemSelected(item);
   }
