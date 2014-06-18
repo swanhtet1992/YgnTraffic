@@ -1,6 +1,10 @@
 package me.sh.ygntraffic.model;
 
+import android.content.Context;
+
 import java.io.Serializable;
+
+import me.sh.ygntraffic.R;
 
 /**
  * Created by SH on 16/Jun/2014.
@@ -14,6 +18,7 @@ public class Place implements Serializable {
   String reported_time;
   String recent;
   String remark;
+  int status_color;
 
   public String getName() {
     return name;
@@ -24,7 +29,17 @@ public class Place implements Serializable {
   }
 
   public String getStatus() {
-    return status;
+    if (status.equalsIgnoreCase("0")) {
+      return "No Report";
+    } else if (status.equalsIgnoreCase("1")) {
+      return "Normal";
+    } else if (status.equalsIgnoreCase("2")) {
+      return "Bad Traffic";
+    } else if (status.equalsIgnoreCase("3")) {
+      return "Worst Traffic";
+    } else {
+      return "Unknown";
+    }
   }
 
   public void setStatus(String status) {
@@ -77,5 +92,19 @@ public class Place implements Serializable {
 
   public void setRemark(String remark) {
     this.remark = remark;
+  }
+
+  public int getStatusColor(Context context, String status) {
+    if (status.equalsIgnoreCase("No Report")) {
+      return context.getResources().getColor(R.color.grey);
+    } else if (status.equalsIgnoreCase("Normal")) {
+      return context.getResources().getColor(R.color.green);
+    } else if (status.equalsIgnoreCase("Bad Traffic")) {
+      return context.getResources().getColor(R.color.yellow);
+    } else if (status.equalsIgnoreCase("Worst Traffic")) {
+      return context.getResources().getColor(R.color.red);
+    } else {
+      return context.getResources().getColor(R.color.grey);
+    }
   }
 }

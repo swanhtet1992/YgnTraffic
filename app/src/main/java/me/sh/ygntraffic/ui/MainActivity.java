@@ -8,9 +8,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.ArrayList;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import java.util.ArrayList;
 import me.sh.ygntraffic.R;
 import me.sh.ygntraffic.adapter.PagerAdapter;
 import me.sh.ygntraffic.base.BaseActivity;
@@ -33,7 +35,8 @@ public class MainActivity extends BaseActivity
   /**
    * The {@link ViewPager} that will host the section contents.
    */
-  @InjectView(R.id.pager) ViewPager mViewPager;
+  @InjectView(R.id.pager)
+  ViewPager mViewPager;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -117,18 +120,21 @@ public class MainActivity extends BaseActivity
     String remark;
     String reportTime;
     String status;
+    int color;
     name = placeArrayList.get(position).getName();
     flag = placeArrayList.get(position).getFlag();
     date = placeArrayList.get(position).getCreatedDate();
     remark = placeArrayList.get(position).getRemark();
     reportTime = placeArrayList.get(position).getReportedTime();
     status = placeArrayList.get(position).getStatus();
+    color = placeArrayList.get(position).getStatusColor(this, status);
     arguments.putString("name", name);
     arguments.putString("flag", flag);
     arguments.putString("date", date);
     arguments.putString("remark", remark);
     arguments.putString("reportTime", reportTime);
-    arguments.putString("status",status);
+    arguments.putString("status", status);
+    arguments.putInt("color", color);
     intentToDetail.putExtras(arguments);
     startActivity(intentToDetail);
   }

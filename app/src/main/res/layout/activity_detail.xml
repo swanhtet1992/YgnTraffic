@@ -1,81 +1,78 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#e9e9e9"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="me.sh.ygntraffic.ui.DetailActivity">
-  <RelativeLayout android:layout_width="match_parent"
-      android:background="@color/white"
-      android:paddingBottom="10dp"
-      android:layout_height="match_parent">
-    <TextView
-        android:layout_marginLeft="@dimen/activity_vertical_margin"
-        android:layout_marginRight="@dimen/activity_vertical_margin"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:id="@+id/trafficName"
-        android:textSize="22sp"
-        android:text="@string/hello_world"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView android:layout_width="match_parent"
-        android:layout_marginRight="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_vertical_margin"
-        android:textSize="18sp"
-        android:padding="10dp"
-        android:layout_below="@+id/trafficName"
-        android:background="@color/red"
-        android:id="@+id/trafficRemark"
-        android:textColor="@color/white"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#e9e9e9"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                tools:context="me.sh.ygntraffic.ui.DetailActivity">
+
+  <TextView
+      android:id="@+id/traffic_name"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="10dp"
+      android:layout_marginLeft="@dimen/activity_vertical_margin"
+      android:layout_marginRight="@dimen/activity_vertical_margin"
+      android:layout_marginTop="10dp"
+      android:textSize="22sp"/>
+
+  <TextView
+      android:id="@+id/traffic_remark"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/traffic_name"
+      android:layout_marginBottom="10dp"
+      android:layout_marginLeft="@dimen/activity_vertical_margin"
+      android:layout_marginRight="@dimen/activity_vertical_margin"
+      android:background="@color/red"
+      android:gravity="center"
+      android:padding="10dp"
+      android:textColor="@color/white"
+      android:textSize="18sp"/>
+
+  <TextView
+      android:id="@+id/traffic_report_time"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/traffic_remark"
+      android:layout_marginLeft="@dimen/activity_vertical_margin"
+      android:layout_marginRight="@dimen/activity_vertical_margin"
+      android:textColor="@color/text_color"/>
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/btn_report"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_weight=".50"
+        android:background="#006D91"
         android:gravity="center"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:layout_marginLeft="@dimen/activity_vertical_margin"
-        android:layout_marginRight="@dimen/activity_vertical_margin"
-        android:id="@+id/trafficReportTime"
-        android:layout_below="@+id/trafficRemark"
-        android:layout_width="match_parent"
-        android:textColor="@color/text_color"
-        android:layout_height="wrap_content"/>
+        android:text="@string/report"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-      <Button
-          android:id="@+id/btnReport"
-          android:textSize="16sp"
-          android:textStyle="bold"
-          android:textColor="@color/white"
-          android:text="@string/report"
-          android:gravity="center"
-          android:background="#006D91"
-          android:layout_height="48dp"
-          android:layout_width="0dp"
-          android:layout_weight=".50"
-          />
+    <Button
+        android:id="@+id/btn_myplace"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_weight=".50"
+        android:background="@color/green"
+        android:gravity="center"
+        android:text="@string/myplace"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
-      <Button
-          android:id="@+id/btnMyPlace"
-          android:textColor="@color/white"
-          android:background="@color/green"
-          android:textSize="16sp"
-          android:layout_width="0dp"
-          android:layout_weight=".50"
-          android:text="@string/myplace"
-          android:textStyle="bold"
-          android:gravity="center"
-          android:layout_height="48dp"/>
-
-    </LinearLayout>
-  </RelativeLayout>
+  </LinearLayout>
 
 </RelativeLayout>

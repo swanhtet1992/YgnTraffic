@@ -9,8 +9,7 @@
     <string name="trafficodition">Report</string>
     <string name="flagtoremove">Flag To Remove</string>
     <string name="title_activity_detail">DetailActivity</string>
-    <string name="hello_world">Hello world!</string>
     <string name="report">Report</string>
-    <string name="myplace">My Place</string>
+    <string name="myplace">Add to My Place</string>
 
 </resources>

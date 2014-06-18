@@ -2,9 +2,9 @@ package me.sh.ygntraffic.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import me.sh.ygntraffic.R;
@@ -17,12 +17,14 @@ public class DetailActivity extends ActionBarActivity {
   String remark = null;
   String status = null;
   String reportTime = null;
+  int color;
 
-  @InjectView(R.id.trafficName) TextView trafficName;
-
-  @InjectView(R.id.trafficRemark) TextView trafficRemark;
-
-  @InjectView(R.id.trafficReportTime) TextView trafficReportTime;
+  @InjectView(R.id.traffic_name)
+  TextView trafficName;
+  @InjectView(R.id.traffic_remark)
+  TextView trafficRemark;
+  @InjectView(R.id.traffic_report_time)
+  TextView trafficReportTime;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -38,34 +40,15 @@ public class DetailActivity extends ActionBarActivity {
     reportTime = bundleFromFragment.getString("reportTime");
     remark = bundleFromFragment.getString("remark");
     status = bundleFromFragment.getString("status");
+    color = bundleFromFragment.getInt("color");
+
     setContentView(R.layout.activity_detail);
     ButterKnife.inject(this);
-    if (status.equalsIgnoreCase("1")) {
-      trafficRemark.setText("Normal");
-      trafficRemark.setBackgroundColor(this.getResources().getColor(R.color.green));
-    } else if (status.equalsIgnoreCase("2")) {
-      trafficRemark.setText("Bad Traffic");
-      trafficRemark.setBackgroundColor(this.getResources().getColor(R.color.yellow));
-    } else if (status.equalsIgnoreCase("3")) {
-      trafficRemark.setText(remark);
-      if (remark.equalsIgnoreCase(null)) {
-        trafficRemark.setText("Worst Traffic");
-      }
-      trafficRemark.setBackgroundColor(this.getResources().getColor(R.color.red));
-    } else {
-      trafficRemark.setText("Unknown");
-      trafficRemark.setBackgroundColor(this.getResources().getColor(R.color.grey));
-    }
+
+    trafficRemark.setText(status);
+    trafficRemark.setBackgroundColor(color);
     trafficName.setText(name);
-
     trafficReportTime.setText(reportTime);
-  }
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.detail, menu);
-    return true;
   }
 
   @Override
@@ -74,9 +57,7 @@ public class DetailActivity extends ActionBarActivity {
     // automatically handle clicks on the Home/Up button, so long
     // as you specify a parent activity in AndroidManifest.xml.
     int id = item.getItemId();
-    if (id == R.id.action_settings) {
-      return true;
-    } else if (id == android.R.id.home) {
+    if (id == android.R.id.home) {
       this.onBackPressed();
       finish();
       return false;

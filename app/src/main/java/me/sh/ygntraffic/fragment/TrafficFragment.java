@@ -12,8 +12,7 @@ import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -21,7 +20,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+
 import java.util.ArrayList;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import me.sh.ygntraffic.R;
 import me.sh.ygntraffic.adapter.PlaceAdapter;
 import me.sh.ygntraffic.base.BaseFragment;
@@ -35,8 +38,10 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
   /**
    * The fragment's ListView/GridView.
    */
-  @InjectView(android.R.id.list) AbsListView mListView;
-  @InjectView(R.id.progress_bar) ProgressBar mProgressBar;
+  @InjectView(android.R.id.list)
+  AbsListView mListView;
+  @InjectView(R.id.progress_bar)
+  ProgressBar mProgressBar;
 
   /**
    * The Adapter which will be used to populate the ListView/GridView with
@@ -64,7 +69,7 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState) {
+                           Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_place, container, false);
     ButterKnife.inject(this, view);
 
@@ -133,7 +138,7 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
     if (null != mListener) {
       // Notify the active callbacks interface (the activity, if the
       // fragment is attached to one) that an item has been selected.
-      mListener.onPlaceClick(mPlaces,position);
+      mListener.onPlaceClick(mPlaces, position);
     }
   }
 
