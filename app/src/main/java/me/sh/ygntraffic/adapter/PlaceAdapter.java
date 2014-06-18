@@ -53,19 +53,8 @@ public class PlaceAdapter extends ArrayAdapter<Place> {
     holder.name.setText(places.get(position).getName());
 
     String status = places.get(position).getStatus();
-    if (status.equalsIgnoreCase("1")) {
-      holder.status.setText("Normal");
-      holder.status.setBackgroundColor(mContext.getResources().getColor(R.color.green));
-    } else if (status.equalsIgnoreCase("2")) {
-      holder.status.setText("Bad Traffic");
-      holder.status.setBackgroundColor(mContext.getResources().getColor(R.color.yellow));
-    } else if (status.equalsIgnoreCase("3")) {
-      holder.status.setText("Worst Traffic");
-      holder.status.setBackgroundColor(mContext.getResources().getColor(R.color.red));
-    } else {
-      holder.status.setText("Unknown");
-      holder.status.setBackgroundColor(mContext.getResources().getColor(R.color.grey));
-    }
+    holder.status.setText(status);
+    holder.status.setBackgroundColor(places.get(position).getStatusColor(mContext, status));
     holder.time.setText(places.get(position).getReportedTime());
 
     return vi;

@@ -92,8 +92,8 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
     try {
       mListener = (OnPlaceClickListener) activity;
     } catch (ClassCastException e) {
-      throw new ClassCastException(activity.toString()
-          + " must implement OnFragmentInteractionListener");
+      throw new ClassCastException(
+          activity.toString() + " must implement OnFragmentInteractionListener");
     }
   }
 
@@ -124,7 +124,6 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
                 Place item = gson.fromJson(obj, Place.class);
                 mPlaces.add(item);
               }
-
               mAdapter = new PlaceAdapter(getActivity(), mPlaces);
               // Set the adapter
               ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
@@ -139,7 +138,7 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
     if (null != mListener) {
       // Notify the active callbacks interface (the activity, if the
       // fragment is attached to one) that an item has been selected.
-      mListener.onPlaceClick("Clicked: " + position);
+      mListener.onPlaceClick(mPlaces, position);
     }
   }
 
@@ -167,7 +166,6 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
    * >Communicating with Other Fragments</a> for more information.
    */
   public interface OnPlaceClickListener {
-    public void onPlaceClick(String id);
+    public void onPlaceClick(ArrayList<Place> placeArrayList, int position);
   }
-
 }
