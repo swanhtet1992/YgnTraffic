@@ -138,7 +138,7 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
     if (null != mListener) {
       // Notify the active callbacks interface (the activity, if the
       // fragment is attached to one) that an item has been selected.
-      mListener.onPlaceClick(mPlaces, position);
+      mListener.onPlaceClick(mPlaces.get(position));
     }
   }
 
@@ -166,6 +166,6 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
    * >Communicating with Other Fragments</a> for more information.
    */
   public interface OnPlaceClickListener {
-    public void onPlaceClick(ArrayList<Place> placeArrayList, int position);
+    public void onPlaceClick(Place place);
   }
 }

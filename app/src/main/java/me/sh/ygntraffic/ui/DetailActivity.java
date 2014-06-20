@@ -8,16 +8,12 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import me.sh.ygntraffic.R;
+import me.sh.ygntraffic.model.Place;
 
 public class DetailActivity extends ActionBarActivity {
 
-  String name = null;
-  String flag = null;
-  String date = null;
-  String remark = null;
-  String status = null;
-  String reportTime = null;
-  int color;
+  public static final String PLACE = "place";
+  private Place mPlace;
 
   @InjectView(R.id.traffic_name)
   TextView trafficName;
@@ -31,24 +27,17 @@ public class DetailActivity extends ActionBarActivity {
     super.onCreate(savedInstanceState);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setHomeButtonEnabled(true);
-
-    Bundle bundleFromFragment = getIntent().getExtras();
-    name = bundleFromFragment.getString("name");
-    flag = bundleFromFragment.getString("flag");
-    date = bundleFromFragment.getString("date");
-    reportTime = bundleFromFragment.getString("reportTime");
-    remark = bundleFromFragment.getString("remark");
-    status = bundleFromFragment.getString("status");
-    color = bundleFromFragment.getInt("color");
 
     setContentView(R.layout.activity_detail);
     ButterKnife.inject(this);
 
-    trafficRemark.setText(status);
-    trafficRemark.setBackgroundColor(color);
-    trafficName.setText(name);
-    trafficReportTime.setText(reportTime);
+    if (!getIntent().getExtras().isEmpty()) {
+      mPlace = (Place) getIntent().getExtras().get(PLACE);
+      trafficRemark.setText(mPlace.getStatus());
+      trafficRemark.setBackgroundColor(mPlace.getStatusColor(this, mPlace.getStatus()));
+      trafficName.setText(mPlace.getName());
+      trafficReportTime.setText(mPlace.getReportedTime());
+    }
   }
 
   @Override

@@ -111,31 +111,9 @@ public class MainActivity extends BaseActivity
   }
 
   @Override
-  public void onPlaceClick(ArrayList<Place> placeArrayList, int position) {
-    Bundle arguments = new Bundle();
-    Intent intentToDetail = new Intent(getApplicationContext(), DetailActivity.class);
-    String name;
-    String flag;
-    String date;
-    String remark;
-    String reportTime;
-    String status;
-    int color;
-    name = placeArrayList.get(position).getName();
-    flag = placeArrayList.get(position).getFlag();
-    date = placeArrayList.get(position).getCreatedDate();
-    remark = placeArrayList.get(position).getRemark();
-    reportTime = placeArrayList.get(position).getReportedTime();
-    status = placeArrayList.get(position).getStatus();
-    color = placeArrayList.get(position).getStatusColor(this, status);
-    arguments.putString("name", name);
-    arguments.putString("flag", flag);
-    arguments.putString("date", date);
-    arguments.putString("remark", remark);
-    arguments.putString("reportTime", reportTime);
-    arguments.putString("status", status);
-    arguments.putInt("color", color);
-    intentToDetail.putExtras(arguments);
+  public void onPlaceClick(Place place) {
+    Intent intentToDetail = new Intent(getBaseContext(), DetailActivity.class);
+    intentToDetail.putExtra(DetailActivity.PLACE, place);
     startActivity(intentToDetail);
   }
 }
