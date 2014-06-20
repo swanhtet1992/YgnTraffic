@@ -21,6 +21,7 @@ import butterknife.OnClick;
 import me.sh.ygntraffic.R;
 import me.sh.ygntraffic.base.BaseActivity;
 import me.sh.ygntraffic.model.Place;
+import me.sh.ygntraffic.util.Constants;
 import me.sh.ygntraffic.util.NetUtil;
 
 public class DetailActivity extends BaseActivity {
@@ -127,7 +128,7 @@ public class DetailActivity extends BaseActivity {
       mDialog.setMessage(getString(R.string.loading_report));
       mDialog.show();
       Ion.with(context)
-          .load("http://cyantra.co/api.php?r=update&p=" + mPlace.getName() + "&s=" + status + "&c=" + remark)
+          .load(Constants.REPORT + mPlace.getName() + "&s=" + status + "&c=" + remark)
           .setLogging("ION-ReportTraffic", Log.DEBUG)
           .asString()
           .setCallback(new FutureCallback<String>() {

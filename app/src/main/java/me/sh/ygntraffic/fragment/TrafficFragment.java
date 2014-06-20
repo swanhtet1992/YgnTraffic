@@ -29,6 +29,7 @@ import me.sh.ygntraffic.R;
 import me.sh.ygntraffic.adapter.PlaceAdapter;
 import me.sh.ygntraffic.base.BaseFragment;
 import me.sh.ygntraffic.model.Place;
+import me.sh.ygntraffic.util.Constants;
 import me.sh.ygntraffic.util.NetUtil;
 
 public class TrafficFragment extends BaseFragment implements AbsListView.OnItemClickListener {
@@ -105,7 +106,7 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
 
   private void getAllTraffic() {
     Ion.with(getActivity())
-        .load("http://cyantra.co/api.php?r=get")
+        .load(Constants.ALL_TRAFFIC)
         .setLogging("iON", Log.DEBUG)
         .asString()
         .setCallback(new FutureCallback<String>() {
