@@ -1,4 +1,4 @@
-YgnTraffic
+YgnTraffic [![Build Status](https://travis-ci.org/sHa92/YgnTraffic.svg?branch=master)](https://travis-ci.org/sHa92/YgnTraffic/builds)
 ==========
 
 YgnTraffic is an android app to Check and Report Yangon Traffic condition based on Ko [Ei Maung](https://github.com/eimg)'s [Cyantra](http://cyantra.co/) API.
