@@ -10,7 +10,7 @@
   <string name="my_place">Add to My Place</string>
 
   <!-- Loading Text -->
-  <string name="loading_report">Reporting...</string>
+  <string name="loading_report">Reporting…</string>
 
   <!-- Error Text -->
   <string name="error_reprot">Please report again. Something went wrong.</string>

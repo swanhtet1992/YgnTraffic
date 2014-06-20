@@ -15,11 +15,10 @@
 
     <TextView
         android:id="@+id/txt_name"
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="ယုဇနဥယ်ာဥ္ျမိဳ.ေတာ္"
-        android:textSize="18dp"/>
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/txt_status"
@@ -28,7 +27,6 @@
         android:background="@color/red"
         android:gravity="right"
         android:padding="10dp"
-        android:text="Bad Traffic"
         android:textColor="@color/white"/>
   </LinearLayout>
 
@@ -36,8 +34,7 @@
       android:id="@+id/txt_time"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Reported at 03:15 PM"
       android:textColor="#999"
-      android:textSize="15dp"/>
+      android:textSize="15sp"/>
 
 </LinearLayout>
