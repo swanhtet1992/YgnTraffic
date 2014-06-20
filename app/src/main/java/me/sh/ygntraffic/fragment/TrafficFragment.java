@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -78,11 +79,12 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
       mProgressBar.setVisibility(View.VISIBLE);
       getAllTraffic();
     } else {
-      setEmptyText("Please check your internet connection.");
+      setEmptyText(getString(R.string.error_internet));
     }
 
     // Set OnItemClickListener so we can be notified on item clicks
     mListView.setOnItemClickListener(this);
+    setHasOptionsMenu(true);
 
     return view;
   }
@@ -116,6 +118,7 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
             if (result == null) {
               Toast.makeText(getActivity(), "Something went wrong.", Toast.LENGTH_LONG).show();
             } else {
+              mPlaces.clear();
               JsonParser parser = new JsonParser();
               JsonArray jArray = (JsonArray) parser.parse(result);
               Gson gson = new GsonBuilder().create();
@@ -141,6 +144,20 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
       // fragment is attached to one) that an item has been selected.
       mListener.onPlaceClick(mPlaces.get(position));
     }
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    int id = item.getItemId();
+    if (id == R.id.action_refresh) {
+      if (NetUtil.isOnline(getActivity().getApplicationContext())) {
+        mProgressBar.setVisibility(View.VISIBLE);
+        getAllTraffic();
+      } else {
+        setEmptyText(getString(R.string.error_internet));
+      }
+    }
+    return super.onOptionsItemSelected(item);
   }
 
   /**

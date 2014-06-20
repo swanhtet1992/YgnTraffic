@@ -68,7 +68,7 @@
         android:layout_weight=".50"
         android:background="@color/green"
         android:gravity="center"
-        android:text="@string/myplace"
+        android:text="@string/my_place"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"/>

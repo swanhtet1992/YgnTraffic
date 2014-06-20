@@ -9,8 +9,6 @@ import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import me.sh.ygntraffic.R;
@@ -88,10 +86,6 @@ public class MainActivity extends BaseActivity
     // Handle action bar item clicks here. The action bar will
     // automatically handle clicks on the Home/Up button, so long
     // as you specify a parent activity in AndroidManifest.xml.
-    int id = item.getItemId();
-    if (id == R.id.action_settings) {
-      return true;
-    }
     return super.onOptionsItemSelected(item);
   }
 
