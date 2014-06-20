@@ -18,7 +18,6 @@ public class Place implements Serializable {
   String reported_time;
   String recent;
   String remark;
-  int status_color;
 
   public String getName() {
     return name;
