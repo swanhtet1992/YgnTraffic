@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- Report Status -->
+  <string-array name="report_status">
+    <item>Worst traffic here!</item>
+    <item>Bad traffic here!</item>
+    <item>It seems Normal here!</item>
+  </string-array>
+
+  <string-array name="report_remark">
+    <item>ေရႀကီးေနသည္</item>
+    <item>မီးပြိဳင့္ပ်က္ေနသည္</item>
+    <item>ယာဥ္မေတာ္တဆျဖစ္ေနသည္</item>
+    <item>    ေက်ာင္းလႊတ္ခ်ိန္</item>
+    <item>    လမ္းျပင္ေနသည္</item>
+    <item>    ေရေျမာင္းေဖာ္ေနသည္</item>
+    <item>    ေျမေအာက္ပိုက္လိုင္းျပင္ေနသည္</item>
+    <item>    စည္းကမ္းမဲ့ယာဥ္ရပ္ထားသည္</item>
+    <item>    ပြဲအခမ္းအနားရွိေနသည္</item>
+    <item>    ကားပ်က္ေနသည္</item>်
+  </string-array>
+</resources>

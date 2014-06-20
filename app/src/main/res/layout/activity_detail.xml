@@ -52,14 +52,14 @@
         android:id="@+id/btn_report"
         android:layout_width="0dp"
         android:layout_height="48dp"
+        android:layout_marginRight="5dp"
         android:layout_weight=".50"
         android:background="#006D91"
         android:gravity="center"
         android:text="@string/report"
         android:textColor="@color/white"
         android:textSize="16sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold"/>
 
     <Button
         android:id="@+id/btn_myplace"
