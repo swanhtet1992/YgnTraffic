@@ -2,6 +2,7 @@ package me.sh.ygntraffic.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -10,9 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -33,7 +32,7 @@ import me.sh.ygntraffic.model.Place;
 import me.sh.ygntraffic.util.Constants;
 import me.sh.ygntraffic.util.NetUtil;
 
-public class TrafficFragment extends BaseFragment implements AbsListView.OnItemClickListener {
+public class TrafficFragment extends BaseFragment implements AbsListView.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
   private OnPlaceClickListener mListener;
 
@@ -42,8 +41,10 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
    */
   @InjectView(android.R.id.list)
   AbsListView mListView;
-  @InjectView(R.id.progress_bar)
-  ProgressBar mProgressBar;
+  @InjectView(android.R.id.empty)
+  TextView mEmptyView;
+  @InjectView(R.id.swipe_refresh)
+  SwipeRefreshLayout mSwipeRefreshLayout;
 
   /**
    * The Adapter which will be used to populate the ListView/GridView with
@@ -75,18 +76,21 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
     View view = inflater.inflate(R.layout.fragment_place, container, false);
     ButterKnife.inject(this, view);
 
-    if (NetUtil.isOnline(getActivity().getApplicationContext())) {
-      mProgressBar.setVisibility(View.VISIBLE);
-      getAllTraffic();
-    } else {
-      setEmptyText(getString(R.string.error_internet));
-    }
+    mSwipeRefreshLayout.setOnRefreshListener(this);
+    mSwipeRefreshLayout.setColorScheme(R.color.yellow, R.color.red,
+        R.color.green, R.color.red);
 
     // Set OnItemClickListener so we can be notified on item clicks
     mListView.setOnItemClickListener(this);
     setHasOptionsMenu(true);
 
     return view;
+  }
+
+  @Override
+  public void onViewCreated(View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    onRefresh();
   }
 
   @Override
@@ -109,14 +113,16 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
   private void getAllTraffic() {
     Ion.with(getActivity())
         .load(Constants.ALL_TRAFFIC)
-        .setLogging("iON", Log.DEBUG)
+        .setLogging("ION", Log.DEBUG)
         .asString()
         .setCallback(new FutureCallback<String>() {
           @Override
           public void onCompleted(Exception e, String result) {
-            Log.e("", "Result: " + result);
-            if (result == null) {
-              Toast.makeText(getActivity(), "Something went wrong.", Toast.LENGTH_LONG).show();
+            mSwipeRefreshLayout.setRefreshing(false);
+
+            if (result == null || e != null) {
+              mPlaces.clear();
+              setEmptyText(getText(R.string.error_internet));
             } else {
               mPlaces.clear();
               JsonParser parser = new JsonParser();
@@ -131,10 +137,20 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
               mAdapter = new PlaceAdapter(getActivity(), mPlaces);
               // Set the adapter
               ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
-              mProgressBar.setVisibility(View.GONE);
             }
           }
         });
+  }
+
+
+  @Override
+  public void onRefresh() {
+    if (NetUtil.isOnline(context)) {
+      mSwipeRefreshLayout.setRefreshing(true);
+      getAllTraffic();
+    } else {
+      setEmptyText(getString(R.string.error_internet));
+    }
   }
 
   @Override
@@ -151,8 +167,8 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
     int id = item.getItemId();
     if (id == R.id.action_refresh) {
       if (NetUtil.isOnline(getActivity().getApplicationContext())) {
-        mProgressBar.setVisibility(View.VISIBLE);
-        getAllTraffic();
+        onRefresh();
+        mEmptyView.setVisibility(View.GONE);
       } else {
         setEmptyText(getString(R.string.error_internet));
       }
@@ -162,15 +178,11 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
 
   /**
    * The default content for this Fragment has a TextView that is shown when
-   * the list is empty. If you would like to change the text, call this method
-   * to supply the text it should use.
+   * the list is empty. This method is called to change the error text.
    */
   public void setEmptyText(CharSequence emptyText) {
-    View emptyView = mListView.getEmptyView();
-
-    if (emptyText instanceof TextView) {
-      ((TextView) emptyView).setText(emptyText);
-    }
+    mEmptyView.setVisibility(View.VISIBLE);
+    mEmptyView.setText(emptyText);
   }
 
   /**
