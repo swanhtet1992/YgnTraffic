@@ -26,6 +26,7 @@
       android:visibility="gone"/>
 
     <TextView
+      android:id="@+id/btn_report"
       android:layout_width="55dp"
       android:layout_height="55dp"
       android:layout_gravity="right|bottom"
