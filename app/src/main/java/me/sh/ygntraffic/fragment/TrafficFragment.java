@@ -92,6 +92,20 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
 
     // Set OnItemClickListener so we can be notified on item clicks
     mListView.setOnItemClickListener(this);
+    // Set OnScrollListener to fix ListView scroll up conflict with SwipeRefresh
+    mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+      @Override
+      public void onScrollStateChanged(AbsListView view, int scrollState) {
+      }
+
+      @Override
+      public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        int topRowVerticalPosition =
+            (mListView == null || mListView.getChildCount() == 0) ?
+                0 : mListView.getChildAt(0).getTop();
+        mSwipeRefreshLayout.setEnabled(topRowVerticalPosition >= 0); // if first row shown != top most position, disable SwipeRefreshLayout
+      }
+    });
     setHasOptionsMenu(true);
 
     return view;
