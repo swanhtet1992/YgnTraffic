@@ -13,6 +13,7 @@
   <string name="loading_report">Reporting…</string>
 
   <!-- Error Text -->
+  <string name="error_empty">No report yet. Report one?</string>
   <string name="error_reprot">Please report again. Something went wrong.</string>
   <string name="error_internet">Please check your internet connection.</string>
 </resources>

@@ -123,6 +123,9 @@ public class TrafficFragment extends BaseFragment implements AbsListView.OnItemC
             if (result == null || e != null) {
               mPlaces.clear();
               setEmptyText(getText(R.string.error_internet));
+            } else if (result.equalsIgnoreCase("{\"empty\":true}")) {
+              mPlaces.clear();
+              setEmptyText(getText(R.string.error_empty));
             } else {
               mPlaces.clear();
               JsonParser parser = new JsonParser();
