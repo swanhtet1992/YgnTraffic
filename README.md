@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/sha92/ygntraffic.png?label=ready&title=Ready)](https://waffle.io/sha92/ygntraffic)
 YgnTraffic [![Build Status](https://travis-ci.org/sHa92/YgnTraffic.svg?branch=master)](https://travis-ci.org/sHa92/YgnTraffic/builds)
 ==========
 
