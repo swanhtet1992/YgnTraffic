@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-  compileSdkVersion 19
-  buildToolsVersion "19.1.0"
+  compileSdkVersion 20
+  buildToolsVersion "20.0.0"
 
   defaultConfig {
     applicationId "me.sh.ygntraffic"
     minSdkVersion 10
-    targetSdkVersion "L"
+    targetSdkVersion 20
     versionCode 1
     versionName "1.0"
   }
@@ -24,5 +24,7 @@ dependencies {
   compile 'com.android.support:appcompat-v7:19.+'
   compile 'com.android.support:support-v4:19.+'
   compile 'com.jakewharton:butterknife:5.1.+'
-  compile 'com.koushikdutta.ion:ion:1.2.+'
+  compile 'com.koushikdutta.async:androidasync:1.2.6@jar'
+  compile 'com.koushikdutta.ion:ion:1.2.+@jar'
+  compile 'com.google.code.gson:gson:2.3+'
 }
