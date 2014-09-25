@@ -14,11 +14,12 @@ import butterknife.InjectView;
 import me.sh.ygntraffic.R;
 import me.sh.ygntraffic.adapter.PagerAdapter;
 import me.sh.ygntraffic.base.BaseActivity;
+import me.sh.ygntraffic.fragment.MyPlaceFragment;
 import me.sh.ygntraffic.fragment.TrafficFragment;
 import me.sh.ygntraffic.model.Place;
 
 public class MainActivity extends BaseActivity
-    implements ActionBar.TabListener, TrafficFragment.OnPlaceClickListener {
+    implements ActionBar.TabListener, TrafficFragment.OnPlaceClickListener, MyPlaceFragment.OnPlaceClickListener {
 
   /**
    * The {@link android.support.v4.view.PagerAdapter} that will provide

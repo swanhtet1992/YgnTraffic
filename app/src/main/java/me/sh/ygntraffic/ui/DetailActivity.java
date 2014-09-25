@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.async.util.FileUtility;
 import com.koushikdutta.ion.Ion;
 
 import butterknife.ButterKnife;
@@ -36,6 +38,8 @@ public class DetailActivity extends BaseActivity {
   TextView trafficRemark;
   @InjectView(R.id.traffic_report_time)
   TextView trafficReportTime;
+  @InjectView(R.id.btn_myplace)
+  Button btnMyPlace;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,11 @@ public class DetailActivity extends BaseActivity {
       trafficName.setText(mPlace.getName());
       trafficReportTime.setText(mPlace.getReportedTime());
     }
+  }
+
+  @OnClick(R.id.btn_myplace)
+  public void saveAsMyPlace() {
+    btnMyPlace.setText("Saved");
   }
 
   @OnClick(R.id.btn_report)
