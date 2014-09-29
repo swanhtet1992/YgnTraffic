@@ -6,7 +6,7 @@ android {
 
   defaultConfig {
     applicationId "me.sh.ygntraffic"
-    minSdkVersion 10
+    minSdkVersion 14
     targetSdkVersion 19
     versionCode 1
     versionName "1.0"
@@ -26,4 +26,5 @@ dependencies {
   compile 'com.jakewharton:butterknife:5.1.+'
   compile 'com.koushikdutta.ion:ion:1.2.7'
   compile 'com.koushikdutta.async:androidasync:1.3.7'
+  compile 'com.melnykov:floatingactionbutton:1.0.3'
 }
